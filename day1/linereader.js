@@ -9,10 +9,8 @@ fuelEquation = (mass) => {
   return fuel;
 }
 
-function readlines() {
+async function readLinesDoMath() {
     lineReader.eachLine('day1input.txt', function(line) {
       fuelTotal += fuelEquation(line);
     });
 }
-
-readlines();
