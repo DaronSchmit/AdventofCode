@@ -11,4 +11,4 @@ readAndSplit = (filename) =>{
   }
 }
 
-module.exports.readAndSplit = readAndSplit();
+module.exports.readAndSplit = readAndSplit;
