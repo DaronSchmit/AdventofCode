@@ -1,20 +1,29 @@
 const fs = require('fs');
 const readline = require('readline');
 
-async function processLineByLine() {
-  const fileStream = fs.createReadStream('input.txt');
+const readInterface = readline.createInterface({
+  input: fs.createReadStream("day1input.txt"),
+  output: process.stdout,
+  console: false
+})
 
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity
-  });
-  // Note: we use the crlfDelay option to recognize all instances of CR LF
-  // ('\r\n') in input.txt as a single line break.
+readInterface.on('line', (line) => {
+  mass = parseInt(line);
+  fuel =
+  console.log(`mass: ${line}`);
+  console.log(parseInt(line));
+});
 
-  for await (const line of rl) {
-    // Each line in input.txt will be successively available here as `line`.
-    console.log(`Line from file: ${line}`);
-  }
+fuelEquation = (mass) => {
+  let fuel;
+  fuel = Math.floor(mass/3)-2;
+  console.log(`Mass: ${mass} Fuel: ${fuel}`);
+  return fuel;
 }
 
-processLineByLine();
+
+// tests
+// fuelEquation(12);
+// fuelEquation(14);
+// fuelEquation(1969);
+// fuelEquation(100756);
