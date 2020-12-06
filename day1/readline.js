@@ -6,14 +6,14 @@ fuelNeeds = [];
 fuelEquation = (mass) => {
   let fuel;
   fuel = Math.floor(mass/3)-2;
-  console.log(`Mass: ${mass} Fuel: ${fuel}`);
+  //console.log(`Mass: ${mass} Fuel: ${fuel}`);
   return fuel;
 }
 
 const readInterface = readline.createInterface({
   input: fs.createReadStream("day1input.txt"),
-  output: process.stdout,
-  console: true
+  output: stdout,
+  console: false
 })
 
 readInterface.on('line', (line) => {
