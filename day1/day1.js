@@ -1,18 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 
-const readInterface = readline.createInterface({
-  input: fs.createReadStream("day1input.txt"),
-  output: process.stdout,
-  console: false
-})
-
-readInterface.on('line', (line) => {
-  mass = parseInt(line);
-  fuel =
-  console.log(`mass: ${line}`);
-  console.log(parseInt(line));
-});
+fuelNeeds = [];
 
 fuelEquation = (mass) => {
   let fuel;
@@ -20,6 +9,20 @@ fuelEquation = (mass) => {
   console.log(`Mass: ${mass} Fuel: ${fuel}`);
   return fuel;
 }
+
+const readInterface = readline.createInterface({
+  input: fs.createReadStream("day1input.txt"),
+  output: process.stdout,
+  console: true
+})
+
+readInterface.on('line', (line) => {
+  mass = parseInt(line);
+  let fuel = fuelEquation(mass);
+  fuelNeeds.push(fuel);
+});
+
+console.log(fuelNeeds);
 
 
 // tests
