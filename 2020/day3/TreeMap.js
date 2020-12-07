@@ -9,4 +9,9 @@ class Treemap { //takes an array of strings of uniform length, arranged like a g
   getCoord(coordX,coordY){
     return this.rows[coordY][coordX];
   }
+  printMap (){
+    this.rows.forEach(row => {console.log(row)});
+  }
 }
+
+module.exports = Treemap;
