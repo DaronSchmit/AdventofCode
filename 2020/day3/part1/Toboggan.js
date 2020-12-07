@@ -6,17 +6,18 @@ class Toboggan {
     this.currentX = 0;
     this.currentY = 0;
     this.treesEncountered = 0;
-    console.log(`Constructed!`);
+    console.log(`Toboggan Constructed!`);
   }
-  move() {
+  move(treeMap) { //set new Current Coords when moving
     this.currentX += this.moveX;
     this.currentY += this.moveY;
+    checkTreeMap(treeMap);
   }
-  checkTreeMap(treeMap){
-    if(this.currentX >= treeMap.row.length){
-      this.currentX -= treeMap.row.length;
+  checkTreeMap(treeMap){ //check the current coords against a treemap, adding to trees encountered if landing on an #
+    if(this.currentX >= treeMap.rowlength){ //reset X position back to wrap around map (map continues infinitely in the X direction)
+      this.currentX -= treeMap.rowlength;
     }
-    if(treeMap.row(this.currentY)[this.currentX] === "#"){
+    if(treeMap.getCoord(this.currentX, this.currentY) === "#"){
       this.treesEncountered++;
     }
   }
