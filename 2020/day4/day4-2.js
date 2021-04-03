@@ -22,13 +22,14 @@ const inputToObjects = (input) => {
 };
 
 let validatePassport = (passport, requirements) => {
-  let passKeys = Object.keys(passport);
+  let passKeys = Object.keys(requirements);
   let validated = true;
-  passKeys.forEach((key) => {
+  let validatedArray = passKeys.map((key) => {
     let keyValidated = passKeys.includes(key);
     value = passport[key];
     if (!keyValidated) {
       validated = false;
+      return validated;
     } else {
       switch (key) {
         case "byr":
@@ -37,6 +38,8 @@ let validatePassport = (passport, requirements) => {
             requirements.byr[0],
             requirements.byr[1]
           );
+          // console.log(`checking ${key}:${value}`, validated);
+          return validated;
           break;
         case "iyr":
           validated = checkYear(
@@ -44,6 +47,8 @@ let validatePassport = (passport, requirements) => {
             requirements.iyr[0],
             requirements.iyr[1]
           );
+          // console.log(`checking ${key}:${value}`, validated);
+          return validated;
           break;
         case "eyr":
           validated = checkYear(
@@ -51,30 +56,42 @@ let validatePassport = (passport, requirements) => {
             requirements.eyr[0],
             requirements.eyr[1]
           );
+          // console.log(`checking ${key}:${value}`, validated);
+          return validated;
           break;
         case "hgt":
           validated = checkHeight(value);
+          // console.log(`checking ${key}:${value}`, validated);
+          return validated;
           break;
         case "hcl":
           validated = checkHairColor(value);
+          // console.log(`checking ${key}:${value}`, validated);
+          return validated;
           break;
         case "ecl":
           validated = checkEcl(value);
+          // console.log(`checking ${key}:${value}`, validated);
+          return validated;
           break;
         case "pid":
           validated = checkPassportID(value);
+          // console.log(`checking ${key}:${value}`, validated);
+          return validated;
           break;
         case "cid":
-          validated = true;
+          return true;
           break;
         default:
           validated = false;
-          console.log("something went wrong");
+          // console.log("something went wrong");
+          return validated;
           break;
       }
     }
   });
-  return validated;
+  console.log(validatedArray)
+  return (!validatedArray.includes(false));
 };
 
 let checkYear = (input, lowerLimit, upperLimit) => {
@@ -107,7 +124,8 @@ let checkHeight = (hgtStr) => {
       let magnitude = hgtStr.slice(0, hgtStr.length - 2);
       switch (units) {
         case "in":
-          return 59 < magnitude && magnitude < 76 ? true : false;
+          let retval = 59 < magnitude && magnitude < 76 ? true : false;
+          return retval;
         case "cm":
           return 150 < magnitude && magnitude < 193 ? true : false;
         default:
@@ -128,24 +146,17 @@ let checkEcl = (eclStr) => {
 };
 
 let theWholeThing = (rawInput) => {
-  let inputArr = inputToStrings(rawInput);
-  let passportArr = inputArr.map((index) => stringToObject(index));
-  let requirements = {
-    ecl: [],
-    pid: 9,
-    eyr: [2020, 2030],
-    hcl: null,
-    byr: [1920, 2002],
-    iyr: [2010, 2020],
-    hgt: null,
-  };
-  let countValidated = 0;
-
-  passportArr.forEach((passport) => {
-    if (validatePassport(passport, requiredKeys1)) {
-      countValidated++;
-    }
-  });
+  countValidated = 0;
+  const requirements = {
+  ecl: [],
+  pid: 9,
+  eyr: [2020, 2030],
+  hcl: null,
+  byr: [1920, 2002],
+  iyr: [2010, 2020],
+  hgt: null,
+};
+  inputToObjects(rawInput).forEach(passport => validatePassport(passport, requirements) ? countValidated++:countValidated+=0)
   return countValidated;
 };
 
@@ -162,7 +173,19 @@ eyr:2022
 
 iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719`;
 
-let testFalse = ``;
+let testFalse = `eyr:1972 cid:100
+hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926
+
+iyr:2019
+hcl:#602927 eyr:1967 hgt:170cm
+ecl:grn pid:012533040 byr:1946
+
+hcl:dab227 iyr:2012
+ecl:brn hgt:182cm pid:021572410 eyr:2020 byr:1992 cid:277
+
+hgt:59cm ecl:zzz
+eyr:2038 hcl:74454a iyr:2023
+pid:3556412378 byr:2007`;
 
 const requirements = {
   ecl: [],
@@ -173,5 +196,7 @@ const requirements = {
   iyr: [2010, 2020],
   hgt: null,
 };
-inputToObjects(testTrue).forEach(passport => console.log(validatePassport(passport, requirements)))
+// inputToObjects(testTrue).forEach(passport => console.log(validatePassport(passport, requirements)))
+// inputToObjects(testFalse).forEach(passport => console.log(validatePassport(passport, requirements)))
 
+// console.log(theWholeThing(rawInput));
