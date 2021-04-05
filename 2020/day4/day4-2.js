@@ -14,6 +14,9 @@ const stringToObject = (inputString) => {
     let propvals = inputString.split(" ");
     let objVals = propvals.map(strings => strings.split(":"))
     objVals.forEach(pair => retObj[pair[0]] = pair[1]);
+    if(Object.keys(retObj).includes("")){
+      delete retObj[""];
+    }
     return retObj;
 }
 
@@ -86,9 +89,9 @@ let validateValues = (passport, requirements) => {
         case "cid":
           return true;
           break;
-        case "":
-          return true;
-          break;
+        // case "":
+        //   return true;
+        //   break;
         default:
           validated = false;
           console.log("something went wrong");
@@ -218,4 +221,4 @@ hgt:59cm ecl:zzz
 eyr:2038 hcl:74454a iyr:2023
 pid:3556412378 byr:2007`;
 
-theWholeThing(rawInput);
+theWholeThing(testTrue);
