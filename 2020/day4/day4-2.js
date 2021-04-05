@@ -90,7 +90,7 @@ let validatePassport = (passport, requirements) => {
       }
     }
   });
-  console.log(validatedArray)
+  // console.log(validatedArray)
   return (!validatedArray.includes(false));
 };
 
@@ -196,7 +196,7 @@ const requirements = {
   iyr: [2010, 2020],
   hgt: null,
 };
-// inputToObjects(testTrue).forEach(passport => console.log(validatePassport(passport, requirements)))
-// inputToObjects(testFalse).forEach(passport => console.log(validatePassport(passport, requirements)))
+inputToObjects(testTrue).forEach(passport => console.log(validatePassport(passport, requirements)))
+inputToObjects(testFalse).forEach(passport => console.log(validatePassport(passport, requirements)))
 
 // console.log(theWholeThing(rawInput));
