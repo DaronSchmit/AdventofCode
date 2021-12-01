@@ -11,9 +11,9 @@ fun main() {
         for (i in 1 until lines.size) {
             if(compare(lines[i], lines[i-1]) == "larger") numLarger++
         }
+        print("part 1: ")
         println(numLarger)
     }
-    // part1()
 
     fun part2() {
         var numLarger: Int = 0
@@ -25,8 +25,11 @@ fun main() {
             if(compare(current, last) == "larger") numLarger++
             last = current
         }
+
+        print("part 2: ")
         println(numLarger)
     }
-    part2()
 
+    part1()
+    part2()
 }
