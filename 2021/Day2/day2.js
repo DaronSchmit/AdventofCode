@@ -1,4 +1,4 @@
-const read = require("./readAndSplit.js");
+const read = require("../readAndSplit.js");
 
 let inputArray = readAndSplit("input.txt");
 
