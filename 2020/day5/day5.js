@@ -8,7 +8,7 @@ const rawInput = readAndSplit('input.txt');
 // console.log(rawInput);
 //slice seat IDs between row and column
 let input = rawInput.map(seatString =>  {
-  return {"rowID":seatString.slice(0,7), "columnID": seatString.slice(7)};
+  return new BoardingPass(seatString);
   });
 
 function BoardingPass(seatString){
@@ -25,7 +25,9 @@ BoardingPass.prototype.displayInfo = function(){
   return `row: ${this.row} col:${this.col} seatID: ${this.seatID}`;
 };
 
-//console log
-let pass = new BoardingPass("BFFFBBFRRR");
+BoardingPass.prototype.getSeatID = function(){
+  return this.seatID;
+}
 
-console.log(pass.displayInfo());
+let seatIDs = input.map(passes => passes.getSeatID());
+console.log(Math.max(...seatIDs));
