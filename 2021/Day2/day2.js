@@ -1,3 +1,6 @@
+const {performance} = require('perf_hooks');
+const start = performance.now();
+
 const read = require("../readAndSplit.js");
 
 let inputArray = readAndSplit("input.txt");
@@ -50,3 +53,6 @@ const part2 = (input) => {
 }
 
 console.log('part 1: ', part1(inputArray), 'part 2: ', part2(inputArray))
+
+const end = performance.now();
+console.log(`Execution time: ${end - start} ms`);

@@ -1,8 +1,9 @@
+const {performance} = require('perf_hooks');
+const start = performance.now();
+
 const read = require("../readAndSplit.js");
 
-let inputArray = readAndSplit("input.txt");
-
-// console.log(inputArray[0][1])
+let inputArray = readAndSplit(__dirname+"/input.txt");
 
 const getEpsilon = array => {
     let retStr = '';
@@ -51,17 +52,13 @@ const getOxygenGeneratorRating = (input, digit = 0) => {
     }
 }
 const getCO2ScrubberRating = (input, digit = 0) => {
-    // console.log(input)
     if (input.length === 1) {
         return input[0] 
     } else {
-        // find most common bit at the current digit
         let leastCommon = 0
         input.forEach(str => leastCommon += str[digit] === '1' ? 1 : -1 )
         leastCommon = leastCommon >= 0 ? 0 : 1
-        // filter those without that bit in the current digit
         retArray = input.filter(str => str[digit] === `${leastCommon}`)
-        // console.log(retArray)
         return getCO2ScrubberRating (retArray, digit+1)
     }
 }
@@ -70,22 +67,8 @@ const part2 = input => {
     return parseInt(getOxygenGeneratorRating(inputArray), 2)*parseInt(getCO2ScrubberRating(inputArray), 2)
 }
 
-const sample = 
-[
-    '00100',
-    '11110',
-    '10110',
-    '10111',
-    '10101',
-    '01111',
-    '00111',
-    '11100',
-    '10000',
-    '11001',
-    '00010',
-    '01010'
-]
-
 console.log('part1', part1(inputArray))
-
 console.log('part2', part2(inputArray))
+
+const end = performance.now();
+console.log(`Execution time: ${end - start} ms`);
