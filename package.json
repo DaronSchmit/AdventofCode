@@ -1,24 +1,17 @@
 {
-  "name": "AdventofCode",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "dependencies": {
-    "jest": "^26.6.3"
+    "@types/fs-extra": "^11.0.4",
+    "typescript": "^5.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "20.8.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DaronSchmit/AdventofCode2019.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DaronSchmit/AdventofCode2019/issues"
-  },
-  "homepage": "https://github.com/DaronSchmit/AdventofCode2019#readme"
+    "solve": "npx ts-node 2023/getSolution",
+    "12": "npx ts-node 2023/Day1/Part2",
+    "compile": "tsc",
+    "prepare": "yarn.cmd run compile",
+    "pretest": "yarn.cmd run compile",
+    "posttest": "yarn.cmd run lint"
+  }
 }
