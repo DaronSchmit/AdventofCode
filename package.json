@@ -8,7 +8,6 @@
   },
   "scripts": {
     "solve": "npx ts-node 2023/getSolution",
-    "12": "npx ts-node 2023/Day1/Part2",
     "compile": "tsc",
     "prepare": "yarn.cmd run compile",
     "pretest": "yarn.cmd run compile",
