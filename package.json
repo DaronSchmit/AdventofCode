@@ -7,7 +7,7 @@
     "@types/node": "20.8.2"
   },
   "scripts": {
-    "solve": "npx ts-node 2023/getSolution",
+    "solve": "npx ts-node 2023/solve",
     "compile": "tsc",
     "prepare": "yarn.cmd run compile",
     "pretest": "yarn.cmd run compile",
