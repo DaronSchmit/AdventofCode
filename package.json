@@ -8,6 +8,7 @@
   },
   "scripts": {
     "solve": "npx ts-node 2023/solve",
+    "sample": "npx ts-node 2023/sample",
     "compile": "tsc",
     "prepare": "yarn.cmd run compile",
     "pretest": "yarn.cmd run compile",

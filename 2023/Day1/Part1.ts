@@ -1,4 +1,4 @@
-import { AoCFileReader } from '../FileReader';
+import { AoCFileReader } from '../AoCFileReader';
 
 export class Part1 {
   private static filterAndFormat(line: string): number[] {
