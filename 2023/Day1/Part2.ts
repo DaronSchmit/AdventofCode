@@ -1,4 +1,4 @@
-import { AoCFileReader } from '../FileReader';
+import { AoCFileReader } from '../AoCFileReader';
 import { Part1 } from './Part1';
 
 enum Numbers {
